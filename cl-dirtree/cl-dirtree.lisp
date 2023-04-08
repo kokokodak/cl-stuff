@@ -10,29 +10,20 @@
     ;(print *filepaths*)
     (dotimes (i (list-length *filepaths*))
 
-
     (let ((*nthitem* (nth i *filepaths*)))
       (if (= i (- (list-length *filepaths*) 1))
         (progn
 	  (format t "~A└── ~A~%" prefix *nthitem*)
 	  (if (uiop:directory-exists-p *nthitem*)
-	    (walk *nthitem* (concatenate 'string prefix "    "))
-	  )
-	)
-      )
+	    (walk *nthitem* (concatenate 'string prefix "    ")))))
 
       (if (/= i (- (list-length *filepaths*) 1))
 	(progn
 	  (format t "~A├── ~A~%" prefix *nthitem*)
 	  (if (uiop:directory-exists-p *nthitem*)
-	      (walk *nthitem* (concatenate 'string prefix "│   "))
-	  )
-	)
-      )
-))))
+	      (walk *nthitem* (concatenate 'string prefix "│   ")))))))))
 
 (defun dirtree (dir)
-  (walk dir "")
-)
+  (walk dir ""))
 
 
